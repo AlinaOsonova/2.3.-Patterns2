@@ -24,19 +24,16 @@ public class DataGenerator {
     private DataGenerator() {
     }
 
-    private static void sendRequest(RegistrationDto user) {
+    private static void sendRequest(DataGenerator.RegistrationDto user) {
         // TODO: отправить запрос на указанный в требованиях path, передав в body запроса объект user
         //  и не забудьте передать подготовленную спецификацию requestSpec.
         //  Пример реализации метода показан в условии к задаче.
         given()
                 .spec(requestSpec)
-                .body(new RegistrationDto(
-                        user.getLogin(),
-                        user.getPassword(),
-                        user.getStatus()))
-                .when()
+                .body(user)
+                .when().log().all()
                 .post("/api/system/users")
-                .then()
+                .then().log().all()
                 .statusCode(200);
     }
 
