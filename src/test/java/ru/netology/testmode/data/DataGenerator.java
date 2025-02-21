@@ -11,6 +11,7 @@ import java.util.Locale;
 
 import static io.restassured.RestAssured.given;
 
+
 public class DataGenerator {
     private static final RequestSpecification requestSpec = new RequestSpecBuilder()
             .setBaseUri("http://localhost")
@@ -24,7 +25,7 @@ public class DataGenerator {
     private DataGenerator() {
     }
 
-    private static void sendRequest(DataGenerator.RegistrationDto user) {
+    static void sendRequest(DataGenerator.RegistrationDto user) {
         // TODO: отправить запрос на указанный в требованиях path, передав в body запроса объект user
         //  и не забудьте передать подготовленную спецификацию requestSpec.
         //  Пример реализации метода показан в условии к задаче.
@@ -40,15 +41,13 @@ public class DataGenerator {
     public static String getRandomLogin() {
         // TODO: добавить логику для объявления переменной login и задания её значения, для генерации
         //  случайного логина используйте faker
-        String login = faker.name().firstName();
-        return login;
+        return faker.name().firstName();
     }
 
     public static String getRandomPassword() {
         // TODO: добавить логику для объявления переменной password и задания её значения, для генерации
         //  случайного пароля используйте faker
-        String password = faker.internet().password();
-        return password;
+        return faker.internet().password();
     }
 
     public static class Registration {
@@ -63,9 +62,9 @@ public class DataGenerator {
         public static RegistrationDto getRegisteredUser(String status) {
             // TODO: объявить переменную registeredUser и присвоить ей значение возвращённое getUser(status).
             // Послать запрос на регистрацию пользователя с помощью вызова sendRequest(registeredUser)
-            var getRegisteredUser = getUser(status);
-            sendRequest(getRegisteredUser);
-            return getRegisteredUser;
+            var user = getUser(status);
+            sendRequest(user);
+            return user;
         }
     }
 
